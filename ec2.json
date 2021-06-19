@@ -1,0 +1,20 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "this is my first template",
+    "Resources": {
+        "cfuser": {
+            "Type" : "AWS::IAM::User",
+            "Properties" : {
+                 "UserName" : "cfuser"
+            }
+        },
+        "cfvm": {
+            "Type" : "AWS::EC2::Instance",
+            "Properties": {
+                "ImageId": "ami-0bd6d37f25afa4d5a",
+                "KeyName": "june2021",
+                "InstanceType": "t2.micro"
+            }
+        }
+    }
+}
