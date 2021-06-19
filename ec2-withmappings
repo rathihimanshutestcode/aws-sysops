@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'this is first even template'
+Mappings: 
+  amiid:
+    regionname:
+      northvirginia: ami-0bd6d37f25afa4d5a
+      ohio: ami-0d8d212151031f51c
+Resources:
+  cfvm:
+    Type: AWS::EC2::Instance
+    Properties:
+#      AvailabilityZone: 'us-east-1a'
+      ImageId: !FindInMap [amiid, regionname, !Ref Regionname]
+      InstanceType: !Ref InstanceTypeParameter
+#      KeyName: "june2021"
+#      SecurityGroupIds:
+#      - sg-0018114de75d0a639
+      Tags:
+      - Key: Name 
+        Value: cfvm
+Parameters:
+  Regionname:
+    Type: String
+  InstanceTypeParameter:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - m1.small
+      - m1.large
+    Description: Enter t2.micro, m1.small, or m1.large. Default is t2.micro.
+
